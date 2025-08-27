@@ -12,7 +12,7 @@ export default function CreateNote() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-
+ console.log(API_BASE_URL);
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({

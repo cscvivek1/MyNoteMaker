@@ -1,14 +1,9 @@
 // API Configuration
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://mynotemaker.onrender.com' 
-  : 'http://localhost:8080';
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:8080'
+  : 'https://mynotemaker.onrender.com';
 
-// Fallback for development if environment variable is not set
-const getApiUrl = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return 'https://mynotemaker.onrender.com';
-  }
-  return 'http://localhost:8080';
-};
+console.log('Current hostname:', window.location.hostname);
+console.log('Using API URL:', API_BASE_URL);
 
-export default getApiUrl();
+export default API_BASE_URL;
