@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import styles from './CreateNote.module.css'
+import API_BASE_URL from '../config/api.js'
 
 export default function CreateNote() {
   const navigate = useNavigate()
@@ -39,7 +40,7 @@ export default function CreateNote() {
         return
       }
 
-      const response = await axios.post('http://localhost:8080/createNote', formData, {
+      const response = await axios.post(`${API_BASE_URL}/createNote`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

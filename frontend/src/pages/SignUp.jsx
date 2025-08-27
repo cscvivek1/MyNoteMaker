@@ -3,6 +3,8 @@ import styles from "./Login.module.css";
 import CustomButton from "../components/CustomButton";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from '../config/api.js';
+
 export default function SignUp() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -12,7 +14,8 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [phone, setPhone] = useState("");
-  const handleSubmit = async(e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!name) {
@@ -47,12 +50,12 @@ export default function SignUp() {
     console.log(email, password, name, role, phone);
     let payload = { name, email, password, role, phone };
     try {
-      let res =  await axios.post("http://localhost:8080/register", payload, {
+      let res = await axios.post(`${API_BASE_URL}/register`, payload, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-    //   console.log(res);
+      //   console.log(res);
       if (res.status === 201) {
         alert("User registered successfully");
         navigate("/login");
@@ -60,13 +63,14 @@ export default function SignUp() {
         setErr("Something went wrong, please try again later");
       }
     } catch (error) {
-      setErr("Something went wrong, please try again later");
+      console.error('Registration error:', error);
+      setErr(error.response?.data?.message || "Something went wrong, please try again later");
     }
-   
   };
+  
   return (
     <div className={styles.login}>
-      <h1 className={styles.title}>Login to Continue</h1>
+      <h1 className={styles.title}>Sign Up</h1>
       {err && <p className={styles.err}>{err}</p>}
       <form className={styles.form}>
         <input
@@ -111,7 +115,7 @@ export default function SignUp() {
         <CustomButton btnText="Register" handler={handleSubmit} />
       </form>
       <p>
-        don't have account? <Link to={"/signup"}>Click to create here</Link>
+        Already have an account? <Link to={"/login"}>Click to login here</Link>
       </p>
     </div>
   );

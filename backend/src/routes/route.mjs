@@ -5,7 +5,9 @@ import { createBook, getBook } from '../controllers/bookController.mjs';
 import { getNotes, createNote, updateNote, deleteNote, migrateNotes } from '../controllers/notesController.mjs';
 
 const router = express.Router();
-
+router.get('/',(req,res)=>{
+    res.send("Hello World");
+})
 router.post('/register', registerUser)
 router.post('/login', loginUser)
 router.get('/profile/:id', authentication, authorization, getProfile);

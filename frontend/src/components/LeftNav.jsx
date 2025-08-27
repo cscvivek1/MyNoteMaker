@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import API_BASE_URL from '../config/api.js'
 
 export default function LeftNav({ onNoteSelect }) {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ export default function LeftNav({ onNoteSelect }) {
           return
         }
 
-        const response = await axios.get('http://localhost:8080/notes', {
+        const response = await axios.get(`${API_BASE_URL}/notes`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -70,7 +71,7 @@ export default function LeftNav({ onNoteSelect }) {
         return
       }
 
-      const response = await axios.post('http://localhost:8080/migrateNotes', {}, {
+      const response = await axios.post(`${API_BASE_URL}/migrateNotes`, {}, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
