@@ -1,0 +1,126 @@
+.container {
+  display: flex;
+  min-height: calc(100vh - 60px); /* Adjust based on navigation height */
+  background-color: #f8f9fa;
+}
+
+.left {
+  flex-shrink: 0;
+  background-color: #f8f9fa;
+}
+
+.right {
+  flex: 1;
+  background-color: white;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.right_top {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.right_top h1 {
+  color: #333;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #2196f3;
+  padding-bottom: 10px;
+}
+
+.noteContent {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #2196f3;
+}
+
+.noteContent h2 {
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.noteContent p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.welcomeMessage {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.welcomeMessage h2 {
+  color: #333;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.welcomeMessage p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .left {
+    order: 2;
+  }
+  
+  .right {
+    order: 1;
+    padding: 20px;
+  }
+  
+  .right_top h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .noteContent {
+    padding: 20px;
+  }
+  
+  .noteContent h2 {
+    font-size: 22px;
+  }
+  
+  .welcomeMessage {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .right {
+    padding: 15px;
+  }
+  
+  .right_top h1 {
+    font-size: 20px;
+  }
+  
+  .noteContent {
+    padding: 15px;
+  }
+  
+  .noteContent h2 {
+    font-size: 18px;
+  }
+}

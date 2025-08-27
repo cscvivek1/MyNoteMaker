@@ -1,0 +1,60 @@
+.login{
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 8px lightblue;
+    margin: 5rem auto;
+    border-radius: 10px;
+    padding-bottom: 2rem;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%;
+    align-items: center;
+}
+.inputField,.select{
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0px 0px 3px lightblue;
+}
+.inputField:focus{
+    outline: none;
+    border: 1px solid blue;
+}
+.submitBtn{
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 102, 0);
+    color: white;
+    cursor: pointer;
+}
+.submitBtn:hover{
+    background-color: rgb(255, 77, 0);
+}
+.title{
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 2rem;
+}
+.err{
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.select{
+    cursor: pointer;
+    width: 105%;
+    
+}
