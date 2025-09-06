@@ -33,18 +33,22 @@ export default function Home() {
           <LeftNav onNoteSelect={handleNoteSelect} />
         </div>
         <div className={styles.right}>
+          <div className={styles.banner}>
+            <h2>Welcome back, {username} 👋</h2>
+            <p>Keep your thoughts, notes, and ideas safe in one place.</p>
+          </div>
+
           <div className={styles.right_top}>
             <h1>My Notes</h1>
-            {selectedNote && (
+            {selectedNote ? (
               <div className={styles.noteContent}>
                 <h2>{selectedNote.title}</h2>
                 <p>{selectedNote.content}</p>
               </div>
-            )}
-            {!selectedNote && (
+            ) : (
               <div className={styles.welcomeMessage}>
-                <h2>Welcome to MyNotes!</h2>
-                <p>Select a note from the left sidebar to view its content.</p>
+                <h2>📒 No note selected</h2>
+                <p>Pick a note from the left sidebar or create a new one to get started.</p>
               </div>
             )}
           </div>

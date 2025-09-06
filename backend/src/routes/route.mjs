@@ -11,7 +11,7 @@ router.get('/',(req,res)=>{
 router.post('/register', registerUser)
 router.post('/login', loginUser)
 router.get('/profile/:id', authentication, authorization, getProfile);
-router.put('/update', authentication, authorization, updateUser)
+router.put('/update', authentication, updateUser)
 router.get('/book', getBook)
 router.post('/createbook', createBook)
 

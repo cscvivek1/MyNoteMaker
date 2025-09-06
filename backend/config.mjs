@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
-dotenv.config();
-let URI=process.env.mongodb;
-let port= process.env.port;
-let secretToken = process.env.secretToken;
-export {URI, port, secretToken};
+dotenv.config()
+
+export const URI = process.env.MONGODB
+export const port = process.env.PORT || 5000
+export const secretToken = process.env.SECRET_TOKEN || "mySecretKey123"

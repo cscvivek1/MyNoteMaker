@@ -1,158 +1,154 @@
-.container {
-  padding: 20px;
-  background-color: #f8f9fa;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(34, 40, 49, 0.95);
+  padding: 24px 0 24px 0;
+  width: 280px;
   min-height: 100vh;
-  border-right: 1px solid #e9ecef;
-  width: 300px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 0 24px 0 rgba(97, 218, 251, 0.04);
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #e9ecef;
-}
-
-.header h2 {
-  margin: 0;
-  color: #333;
-  font-size: 20px;
-  font-weight: 600;
+  justify-content: space-between;
+  padding: 0 24px 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 10px;
 }
 
 .createButton {
-  background-color: #2196f3;
-  color: white;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.createButton:hover {
-  background-color: #1976d2;
-}
-
-.migrationSection {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #fff3cd;
-  border: 1px solid #ffeaa7;
-  border-radius: 8px;
-}
-
-.migrateButton {
-  background-color: #ffc107;
-  color: #333;
+  background: linear-gradient(90deg, #61dafb 0%, #21cbf3 100%);
+  color: #111;
+  font-weight: 700;
+  font-size: 15px;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 16px;
+  padding: 10px 22px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  margin-bottom: 8px;
+  box-shadow: 0 2px 16px 0 rgba(97,218,251,0.18);
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.migrateButton:hover {
-  background-color: #e0a800;
+.createButton::before {
+  content: "";
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, #21cbf3 0%, #61dafb 100%);
+  opacity: 0.18;
+  z-index: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  animation: pulse 2.2s infinite;
 }
 
-.migrationNote {
-  margin: 0;
-  font-size: 12px;
-  color: #856404;
-  text-align: center;
-  font-style: italic;
+@keyframes pulse {
+  0% { opacity: 0.18; }
+  50% { opacity: 0.32; }
+  100% { opacity: 0.18; }
+}
+
+.createButton:hover,
+.createButton:focus {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 24px 0 rgba(97,218,251,0.28);
 }
 
 .notesList {
+  margin-top: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  padding: 0 16px;
 }
 
 .noteItem {
-  background-color: white;
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 13px 16px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.22s cubic-bezier(.4,2,.6,1);
+  border-left: 3px solid transparent;
+  color: #fff;
+  position: relative;
 }
 
-.noteItem:hover {
-  background-color: #f8f9fa;
-  border-color: #2196f3;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
+.noteItem:hover,
 .noteItem.selected {
-  background-color: #e3f2fd;
-  border-color: #2196f3;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+  border-left: 3px solid #61dafb;
+  transform: translateX(6px) scale(1.03);
+  box-shadow: 0 4px 18px rgba(97, 218, 251, 0.13);
+  background: rgba(97, 218, 251, 0.10);
 }
 
 .noteTitle {
   margin: 0;
-  color: #333;
   font-size: 16px;
-  font-weight: 500;
-  line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.noteActions {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  color: #61dafb;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.actionButton:hover {
+  background: rgba(97,218,251,0.13);
+  color: #21cbf3;
+}
+
+.deleteButton {
+  color: #ff4d4f;
+}
+
+.deleteButton:hover {
+  background: rgba(255,77,79,0.13);
+  color: #ff7875;
+}
+
+.empty,
+.noNotes {
+  color: #aaa;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
 }
 
 .error {
-  color: #d32f2f;
-  background-color: #ffebee;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  border: 1px solid #ffcdd2;
-  font-size: 14px;
+  color: #ff4d4f;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .loading {
-  color: #666;
+  color: #61dafb;
   text-align: center;
-  padding: 20px;
-  font-size: 14px;
-}
-
-.noNotes {
-  color: #666;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  font-style: italic;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #e9ecef;
-    min-height: auto;
-  }
-  
-  .header {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-  }
-  
-  .createButton {
-    align-self: stretch;
-    text-align: center;
-  }
+  margin-bottom: 10px;
 }

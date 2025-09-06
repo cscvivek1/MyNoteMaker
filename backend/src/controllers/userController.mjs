@@ -69,15 +69,27 @@ const loginUser=async (req,res)=>{
         }
     }
 }
-const updateUser=async (req,res)=>{
-    try {
-        const {email, name}=req.body;
-        const updatedData= await userModel.updateOne({email:email},{$set:{name:name}});
-        return res.send({status:"ok", data:updatedData})
-    } catch (error) {
-         return res.send({status:"failed", message:error.message})
+const updateUser = async (req, res) => {
+  try {
+    const { name, role, phone } = req.body;
+    const userId = req.user.id; // authentication se milega
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { $set: { name, role, phone } },
+      { new: true }
+    ).select("-password");
+
+    if (!updatedUser) {
+      return res.status(404).send({ status: "failed", message: "User not found" });
     }
-}
+
+    return res.status(200).send({ status: "ok", data: updatedUser });
+  } catch (error) {
+    return res.status(500).send({ status: "failed", message: error.message });
+  }
+};
+
 const getProfile= async(req,res)=>{
     try {
         const id= req.params.id;
@@ -95,5 +107,33 @@ const getProfile= async(req,res)=>{
             return res.status(500).send({status:"failed",message:error.message});
         }
     }
+}
+import User from '../models/userModel.mjs'
+
+// ...existing code...
+
+export const updateProfile = async (req, res) => {
+  try {
+    const userId = req.user.id
+    const { name, email, photo } = req.body
+
+    // Check if email is being updated and is unique
+    if (email) {
+      const existing = await User.findOne({ email, _id: { $ne: userId } })
+      if (existing) {
+        return res.status(400).json({ message: 'Email already in use.' })
+      }
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: { name, email, photo } },
+      { new: true, runValidators: true }
+    ).select('-password')
+
+    res.json({ user: updatedUser })
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to update profile.' })
+  }
 }
 export {registerUser,loginUser,updateUser,getProfile}
